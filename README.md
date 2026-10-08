@@ -40,3 +40,10 @@ WebRTC data channel diagnostics need to peek inside SCTP packets to identify chu
 - A chunk whose declared value extends past the end of the buffer throws `RangeError` rather than silently truncating.
 - 1–3 trailing bytes that cannot form a full header are treated as end-of-stream: `parseSctpChunks` returns the chunks it found and stops. The RFC does not define a receiver behaviour for a truncated tail, so we pick the lenient option.
 - `value` is a view, not a copy. Mutating it mutates the source buffer.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
