@@ -1,6 +1,6 @@
 {
   "name": "sctp-chunk-parser",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Decodes SCTP packet chunk headers into type, flags, length, and value slices for WebRTC data channel inspection.",
   "type": "module",
   "main": "src/index.js",
